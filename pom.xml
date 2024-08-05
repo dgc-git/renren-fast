@@ -27,8 +27,8 @@
 		<commons.lang.version>2.6</commons.lang.version>
 		<commons.fileupload.version>1.2.2</commons.fileupload.version>
 		<commons.io.version>2.5</commons.io.version>
-		<commons.codec.version>1.10</commons.codec.version>
-		<commons.configuration.version>1.10</commons.configuration.version>
+		<commons.codec.version>1.15</commons.codec.version>
+		<commons.configuration.version>1.8</commons.configuration.version>
 		<shiro.version>1.9.0</shiro.version>
 		<jwt.version>0.7.0</jwt.version>
 		<kaptcha.version>0.0.9</kaptcha.version>
@@ -49,8 +49,38 @@
 		<remote-username>root</remote-username>
 		<remote-passwd>123456</remote-passwd>
 	</properties>
-
+<dependencyManagement>
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-dependencies</artifactId>
+			<version>2021.0.1</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-alibaba-dependencies</artifactId>
+			<version>2021.0.1.0</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+	</dependencies>
+
+</dependencyManagement>
+	<dependencies>
+
+		<!--        注册中心-->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+		</dependency>
+		<!--        配置中心-->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -160,11 +190,7 @@
 			<artifactId>commons-configuration</artifactId>
 			<version>${commons.configuration.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-core</artifactId>
-			<version>${shiro.version}</version>
-		</dependency>
+
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-spring</artifactId>
@@ -184,6 +210,7 @@
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
 			<version>${swagger.version}</version>
+
 		</dependency>
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -248,6 +275,24 @@
 			</extension>
 		</extensions>
 		<plugins>
+<!--			<plugin>-->
+<!--				<groupId>org.apache.maven.plugins</groupId>-->
+<!--				<artifactId>maven-enforcer-plugin</artifactId>-->
+<!--				<version>3.0.0-M3</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<id>enforce</id>-->
+<!--						<goals>-->
+<!--							<goal>enforce</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--							<rules>-->
+<!--								<DependencyConvergence />-->
+<!--							</rules>-->
+<!--						</configuration>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
